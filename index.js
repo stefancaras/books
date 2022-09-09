@@ -15,11 +15,9 @@ class UI {
 			const book = new Book(title, author, isbn);
 			UI.add(book);
 			UI.clearFields();
-
-			const form = document.querySelector('#form');
-			const p = document.createElement('p');
-			p.innerText = 'Cartea a fost adăugată.'
-			form.appendChild(p);
+			UI.message('confirm');
+		} else {
+			UI.message('error');
 		}
 	}
 	static add(book) {
@@ -43,6 +41,20 @@ class UI {
         document.querySelector('#author').value = '';
         document.querySelector('#isbn').value = '';
     }
+	static message(msg) {
+		const form = document.querySelector('#form');
+		const p = document.createElement('p');
+		if (msg === 'confirm') {
+			p.innerText = 'Cartea a fost adăugată.'
+		} else {
+			p.innerText = 'Completează toate câmpurile.'
+			p.classList.add('error');
+		}
+		form.appendChild(p);
+		//remove message/error after 2 seconds
+		const paragraph = document.querySelector('p');
+		setTimeout(()=>paragraph.remove(),2000);
+	}
 	static clickButtonOnEnter(event) {
 		if (event === 'Enter') {
 			button.click();
