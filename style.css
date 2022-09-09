@@ -8,6 +8,12 @@ body {
 h1 {
 	text-align: center;
 }
+p {
+	width: 50%;
+	background-color: green;
+	text-align: center;
+	margin: 30px auto;
+}
 label {
 	display: inline-block;
 	width: 80%;

@@ -7,6 +7,21 @@ class Book {
 }
 
 class UI {
+	static createBook() {
+		const title = document.querySelector('#title').value;
+		const author = document.querySelector('#author').value;
+		const isbn = document.querySelector('#isbn').value;
+		if (title != "" && author != "" && isbn != "") {
+			const book = new Book(title, author, isbn);
+			UI.add(book);
+			UI.clearFields();
+
+			const form = document.querySelector('#form');
+			const p = document.createElement('p');
+			p.innerText = 'Cartea a fost adăugată.'
+			form.appendChild(p);
+		}
+	}
 	static add(book) {
 		let row = table.insertRow(1);
 		let cell1 = row.insertCell(0);
@@ -28,28 +43,16 @@ class UI {
         document.querySelector('#author').value = '';
         document.querySelector('#isbn').value = '';
     }
+	static clickButtonOnEnter(event) {
+		if (event === 'Enter') {
+			button.click();
+		}
+	}
 }
 
 let button = document.querySelector('button');
 let table = document.querySelector('table');
 
-button.addEventListener('click', () => {
-	const title = document.querySelector('#title').value;
-	const author = document.querySelector('#author').value;
-	const isbn = document.querySelector('#isbn').value;
-	if (title != "" && author != "" && isbn != "") {
-		const book = new Book(title, author, isbn);
-		UI.add(book);
-		UI.clearFields();
-	}
-});
-
-table.addEventListener('click', (e) => {
-	UI.remove(e.target);
-});
-
-isbn.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      button.click();
-    }
-});
+button.addEventListener('click', () => UI.createBook());
+table.addEventListener('click', (e) => UI.remove(e.target));
+isbn.addEventListener('keypress', (e) => UI.clickButtonOnEnter(e.key));
