@@ -34,7 +34,7 @@ class UI {
 		cell3.innerText = book.isbn;
 		cell4.innerHTML = `<i class="fas fa-window-close" id="x"></i>`;
 	}
-	static remove(el) {
+	static removeBook(el) {
 		if (el.id == 'x') {
 			el.parentNode.parentNode.remove();
 		}
@@ -66,7 +66,7 @@ class UI {
 	}
 	static eventListeners() {
 		button.addEventListener('click', () => UI.createBook());
-		table.addEventListener('click', (e) => UI.remove(e.target));
+		table.addEventListener('click', (e) => UI.removeBook(e.target));
 		isbn.addEventListener('keypress', (e) => UI.clickButtonOnEnter(e.key));
 	}
 };
