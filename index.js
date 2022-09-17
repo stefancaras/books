@@ -29,13 +29,13 @@ class UI {
 		const cell2 = row.insertCell(1);
 		const cell3 = row.insertCell(2);
 		const cell4 = row.insertCell(3);
-		cell1.innerText = book.title;
-		cell2.innerText = book.author;
-		cell3.innerText = book.isbn;
-		cell4.innerHTML = `<i class="fas fa-window-close" id="x"></i>`;
+		cell1.textContent = book.title;
+		cell2.textContent = book.author;
+		cell3.textContent = book.isbn;
+		cell4.innerHTML = `<i class="fas fa-window-close"></i>`;
 	}
 	static removeBook(el) {
-		if (el.id == 'x') {
+		if (el.classList.contains('fa-window-close')) {
 			el.parentNode.parentNode.remove();
 		}
 	}
@@ -49,9 +49,9 @@ class UI {
 		const p = document.createElement('p');
 		p.classList.add('msg');
 		if (msg === 'confirm') {
-			p.innerText = 'Cartea a fost adăugată.'
+			p.textContent = 'Cartea a fost adăugată.'
 		} else {
-			p.innerText = 'Completează toate câmpurile.'
+			p.textContent = 'Completează toate câmpurile.'
 			p.classList.add('error');
 		}
 		form.appendChild(p);
